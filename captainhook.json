@@ -1,0 +1,29 @@
+{
+    "commit-msg": {
+        "enabled": false,
+        "actions": []
+    },
+    "pre-commit": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "\\CaptainHook\\App\\Hook\\Exec",
+                "options": {
+                    "exec": "./vendor/bin/pint --dirty"
+                }
+            },
+            {
+                "action": "\\CaptainHook\\App\\Hook\\PHP\\Composer\\Exec",
+                "options": {
+                    "exec": "vendor/bin/phpstan analyse --configuration=phpstan.neon"
+                }
+            },
+            {
+                "action": "\\CaptainHook\\App\\Hook\\Exec",
+                "options": {
+                    "exec": "./vendor/bin/pest"
+                }
+            }
+        ]
+    }
+}
